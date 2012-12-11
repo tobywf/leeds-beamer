@@ -1,0 +1,102 @@
+% Copyright 2012 Toby Fleming
+% Much of this file is based on Till Tantau's beamer templates, hence they
+% may be distributed and/or modified under the GNU Public License v3.
+
+\newdimen\beamer@logowidth
+\newdimen\beamer@headheight
+
+\beamer@headheight=-1pt
+\beamer@logowidth=-1pt
+
+\newif\ifbeamer@footline
+\beamer@footlinetrue
+
+\newif\ifbeamer@officiallogo
+\beamer@officiallogofalse
+
+% Use the University of Leeds logo *MUST HAVE AUTHORISATION TO USE!*
+\DeclareOptionBeamer{officiallogo}{\beamer@officiallogotrue}
+% Hide the footline
+\DeclareOptionBeamer{nofootline}{\beamer@footlinefalse}
+% The height of the headline.
+% Set to 0 to use the default headline template.
+\DeclareOptionBeamer{height}{\beamer@headheight=#1}
+% The width of the logo (container) in the headline.
+% Set to 0 to hide any logo, even if it is defined.
+\DeclareOptionBeamer{logowidth}{\beamer@logowidth=#1}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+% default head height
+\ifdim\beamer@headheight<0pt
+  \usebeamerfont{frametitle}
+  \beamer@headheight=1.5\baselineskip
+  \reset@font
+\fi
+
+% hide the standard logo
+\setbeamertemplate{logo}{}
+
+% overwrite the standard logo command.
+% if this is called, the logo always gets placed, even if the template is empty.
+\renewcommand{\logo}{\def\insertlogonew}
+
+% Use the University of Leeds logo
+% *MUST HAVE AUTHORISATION TO USE!*
+\ifbeamer@officiallogo
+  \pgfdeclareimage[height=0.7\beamer@headheight]{uni_leeds}{uni_leeds_white.pdf}
+  \beamer@logowidth=3\beamer@headheight
+  % proportional (aspect ratio of 3.5, 3.5*0.8 = 2.8)
+  \logo{\pgfuseimage{uni_leeds}}
+\fi
+
+\ifdim\beamer@headheight>0pt
+% if head height is 0pt, use default frame title
+  \setbeamercolor*{frametitle}{parent=sidebar}
+  \defbeamertemplate*{frametitle}{leeds theme}
+  {%
+    \nointerlineskip%
+    \vskip-\beamer@headheight%
+    \vbox to \beamer@headheight{%
+      \vfil
+      \leftskip=-\beamer@leftmargin%
+      \advance\leftskip by0.3cm%
+      \rightskip=-\beamer@rightmargin%
+      \advance\rightskip by0.3cm plus1fil%
+      {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\par}%
+      {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle\par}%
+      \vbox{}%
+      \vskip-1em%
+      \vfil
+    }%
+  }
+  
+  \defbeamertemplate*{headline}{leeds theme}
+  {%
+    \begin{beamercolorbox}[wd=\paperwidth]{frametitle}
+      \hfill%
+      \ifdim\beamer@logowidth>0pt%
+        \hskip-\beamer@logowidth%
+        \hbox to \beamer@logowidth{\hss\vbox to \beamer@headheight{\vss\hbox{\insertlogonew}\vss}\hss}%
+      \else%
+        \vrule width0pt height \beamer@headheight% 
+      \fi%
+    \end{beamercolorbox}
+    \hrulefill
+  }
+\fi
+
+\ifbeamer@footline
+  \defbeamertemplate*{footline}{leeds theme}
+  {
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+    \end{beamercolorbox}%
+    \vskip0pt%
+  }
+\else
+  \defbeamertemplate*{footline}{leeds theme}{}
+\fi
+
+\mode<all>

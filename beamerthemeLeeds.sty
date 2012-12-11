@@ -1,0 +1,80 @@
+% Copyright 2012 Toby Fleming
+% Much of this file is based on Till Tantau's beamer templates, hence they
+% may be distributed and/or modified under the GNU Public License v3.
+
+% color, graphicx, hyperref, xcolor loaded by beamer, pass options in documentclass
+\usepackage{tikz}
+
+% useful to include tikz figures
+\providecommand{\tikzfig}[2][scale=1]{\begin{tikzpicture}[#1]\input{#2}\end{tikzpicture}}
+% useful for DOI citations
+\providecommand{\doi}[1]{{\scriptsize\texttt{#1}}}
+
+\newbox\copyrightbox
+\newdimen\copyrightsize
+
+% this allows for graphics and copyrights, conveniently placed
+% copied (changed the names) from Till Tantau
+\providecommand\includegraphicscopyright[3][]{%
+  \leavevmode\vbox{%
+    \vskip3pt\raggedright\setbox\copyrightbox=\hbox{%
+      \includegraphics[#1]{#2}%
+    }%
+    \copyrightsize=\wd\copyrightbox\box\copyrightbox\par\vskip1pt{%
+      \scriptsize\vbox{\hsize=\copyrightsize#3}%
+    }%
+    \vskip3pt%
+  }%
+}
+
+\newif\ifbeamer@compress
+\beamer@compressfalse
+
+% The height of the headline.
+% Set to 0 to use the default headline template.
+\DeclareOptionBeamer{height}{\PassOptionsToPackage{height=#1}{beamerouterthemeLeeds}}
+% The width of the logo (container) in the headline.
+% Set to 0 to hide any logo, even if it is defined.
+\DeclareOptionBeamer{logowidth}{\PassOptionsToPackage{logowidth=#1}{beamerouterthemeLeeds}}
+% Use the University of Leeds logo.
+% *MUST HAVE AUTHORISATION TO USE!*
+\DeclareOptionBeamer{officiallogo}{\PassOptionsToPackage{officiallogo}{beamerouterthemeLeeds}}
+% Hide the footline
+\DeclareOptionBeamer{nofootline}{\PassOptionsToPackage{nofootline}{beamerouterthemeLeeds}}
+% Use flat colors for structure elements (sidebars, headers, etc.)
+\DeclareOptionBeamer{flat}{\PassOptionsToPackage{flat}{beamercolorthemeLeeds}}
+% Compress the template
+\DeclareOptionBeamer{compress}{\beamer@compresstrue}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\useinnertheme{Leeds}
+\useoutertheme{Leeds}
+\usecolortheme{Leeds}
+\usefonttheme{Leeds}
+
+% Custom footnote template which removes the margin
+%\setbeamertemplate{footnote}{\noindent\raggedright\hbox to 0.5em{\hfil\insertfootnotemark}\insertfootnotetext\par}
+\setbeamertemplate{footnote}{\noindent\raggedright\insertfootnotetext\par}
+
+% Tighten the text margins
+\ifbeamer@compress
+  \setbeamersize{text margin left=6mm, text margin right=6mm}
+\fi
+
+% A special frame with primary color background
+\newcommand{\structframe}[2][]{{
+\setbeamercolor*{normal text}{use=palette primary,fg=palette primary.fg,bg=palette primary.bg}
+\begin{frame}[c]{#1}\usebeamercolor[fg]{normal text}#2\end{frame}
+}} % #1 = default empty title
+
+% No navigation symbols, they are ugly
+\setbeamertemplate{navigation symbols}{}
+
+\mode<all>
+
+% A special frame in presentations, a normal frame otherwise
+\providecommand{\structframe}[2][]{{
+\begin{frame}[c]{#1}\usebeamercolor[fg]{normal text}#2\end{frame}
+}} % #1 = default empty title

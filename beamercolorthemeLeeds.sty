@@ -1,0 +1,64 @@
+% Copyright 2012 Toby Fleming
+% Much of this file is based on Till Tantau's beamer templates, hence they
+% may be distributed and/or modified under the GNU Public License v3.
+
+% -- University of Leeds colour palette ---
+\definecolor{leedsblack}{cmyk}{0.60,0.40,0.40,1.00}
+%{RGB}{000,000,000} % Pantone Black (Leeds Black)
+\definecolor{leedsbeige}{cmyk}{0.00,0.01,0.07,0.03}
+%{RGB}{246,241,228} % Pantone 9060 (Leeds Beige)
+\definecolor{leedswhite}{cmyk}{0.00,0.00,0.00,0.00}
+%{RGB}{255,255,255} % Pantone White (Leeds White)
+\definecolor{leedsgreen}{cmyk}{1.00,0.00,0.81,0.66}
+%{RGB}{000,080,047} % Pantone 3435c (Leeds Green)
+\definecolor{leedsred}{cmyk}{0.00,1.00,0.79,0.20}
+%{RGB}{196,018,048}   % Pantone 187c (Leeds Red)
+
+\mode<presentation>
+
+% see e.g. compress option for example of true or false flag
+\newif\ifbeamer@flatcolor
+\beamer@flatcolorfalse
+\DeclareOptionBeamer{flat}{\beamer@flatcolortrue}
+\ProcessOptionsBeamer
+
+\usecolortheme{LeedsGreen}
+
+\setbeamercolor*{normal text}{fg=leedsblack,bg=leedsbeige}
+\setbeamercolor*{example text}{fg=leedsblack!50!leedswhite}
+
+\setbeamercolor*{structure}{use=palette primary,fg=palette primary.bg}
+\setbeamercolor*{section in toc}{use=palette primary,fg=palette primary.bg}
+
+\setbeamercolor*{palette quaternary}{use=palette primary,fg=palette primary.fg,bg=palette primary.bg}
+
+\ifbeamer@flatcolor
+  \setbeamercolor*{palette secondary}{use=palette primary,fg=palette primary.fg,bg=palette primary.bg}
+  \setbeamercolor*{palette tertiary}{use=palette primary,fg=palette primary.fg,bg=palette primary.bg}
+\else
+  \setbeamercolor*{palette secondary}{use=palette primary,fg=palette primary.fg,bg=palette primary.bg!75!black}
+  \setbeamercolor*{palette tertiary}{use=palette primary,fg=palette primary.fg,bg=palette primary.bg!50!black}
+\fi
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\setbeamercolor*{sidebar}{use=palette primary,fg=palette primary.fg,bg=palette primary.bg}
+
+\setbeamercolor*{palette sidebar primary}{use=sidebar,fg=sidebar.bg,bg=leedsbeige} % subsection
+\setbeamercolor*{palette sidebar secondary}{use=sidebar,fg=sidebar.bg,,bg=leedsbeige} % section
+\setbeamercolor*{palette sidebar tertiary}{parent=sidebar} % author, institute, date
+\setbeamercolor*{palette sidebar quaternary}{parent=sidebar} % title
+
+\setbeamercolor*{section in sidebar shaded}{use=section in sidebar,fg=section in sidebar.bg}
+\setbeamercolor*{subsection in sidebar shaded}{use=subsection in sidebar,fg=subsection in sidebar.bg}
+
+\setbeamercolor*{navigation symbols}{use=normal text,fg=normal text.fg}
+\setbeamercolor*{navigation symbols dimmed}{use=normal text,fg=normal text.fg!50!bg}
+
+\setbeamercolor*{item}{parent=local structure,use=palette primary,fg=palette primary.bg}
+
+\setbeamercolor*{bibliography entry location}{use=normal text,fg=normal text.fg!65!bg}
+
+\setbeamercolor*{qed symbol}{use=palette primary,fg=palette primary.bg}
+
+\mode<all>

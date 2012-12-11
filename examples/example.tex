@@ -1,0 +1,135 @@
+%!TEX TS-program = XeLaTeX
+% Copyright 2012 Toby Fleming
+% Much of this file is based on Till Tantau's beamer templates, hence they
+% may be distributed and/or modified under the GNU Public License v3.
+
+% WARNING: DO NOT USE AS A TEMPLATE!
+% Wile this file doesn't have any terrible macros (it's just bad),
+% you should never use this as a basis for a presentation. Go dig up an
+% example beamer presentation and add "\usetheme{Leeds}" to that.
+
+\documentclass[xetex,12pt,aspectratio=169]{beamer}
+\mode<presentation>
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=uk]{english}
+
+\usetheme{Leeds}
+
+\title[Short Title]{Looooong Title}
+\subtitle{Include Only If Paper Has a Subtitle}
+\author[Spam, Eggs]{H.~Spam\inst{1} \and F.~Eggs\inst{2}}
+\institute[Universities of Somewhere and Elsewhere]{\inst{1}Department of Practical Philosophy\\University of Somewhere\and\inst{2}Department of Theoretical Philosophy\\University of Elsewhere}
+\date[CFP 2003]{Conference on Fabulous Presentations, 2003}
+
+\AtBeginSection[]{\structframe{\sectionpage}}
+\AtBeginSubsection[]{\begin{frame}<beamer>{Outline}\tableofcontents[currentsection,currentsubsection]\end{frame}}
+
+\begin{document}
+
+\structframe{\titlepage}
+\part{Foo}
+\structframe{\partpage}
+\section{Blah}
+\subsection{More blah}
+\structframe{\subsectionpage}
+\structframe{\headingpage}
+
+\section{Motivation}
+\subsection{The Basic Problem That We Studied}
+
+\begin{frame}{Make Titles Informative. Use Uppercase Letters.}{Subtitles are optional.}
+\begin{itemize}
+  \item Use \texttt{itemize} a lot.
+  \item Use very short sentences or short phrases.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{There Is No Largest Prime Number}
+\framesubtitle{The proof uses \textit{reductio ad absurdum}.}
+\begin{theorem}
+  There is no largest prime number.
+\end{theorem}
+\footnote{test}
+\footnote{\doi{doi:10.000/PhysRevZeta.00000}}
+\end{frame}
+
+\begin{frame}{There Is No Largest Prime Number}
+\begin{proof}
+\begin{enumerate}
+  \item Suppose $p$ were the largest prime number.
+  \item Let $q$ be the product of the first $p$ numbers.
+  \item Then $q+1$ is not divisible by any of them.
+  \item But $q + 1$ is greater than $1$, thus divisible by some prime
+  number not in the first $p$ numbers.\qedhere
+\end{enumerate}
+\end{proof}
+\end{frame}
+
+\subsection{Previous Work}
+
+\begin{frame}{Make Titles Informative.}
+\begin{figure}\centering
+  \includegraphicscopyright[width=6cm,height=2cm]{LaTeX}{Stretched \LaTeX{} logo in PNG format}
+\end{figure}
+\begin{definition}[Formale Sprache]
+  Eine \alert{formale Sprache} ist eine (oft unendliche!) Menge von Worten für ein festes Alphabet.
+\end{definition}
+\begin{quotation}
+  Informatiker lieben Logiker.
+\end{quotation}
+\end{frame}
+
+\begin{frame}{Make Titles Informative.}
+\begin{block}{Beobachtungen}
+  \begin{itemize}
+    \item Wir haben keine Ahnung, was der Text bedeutet.
+    \item Es gibt aber \alert{Regeln}, die offenbar eingehalten wurden.
+    \item Wir kennen mehr Regeln als bei den Hieroglyphen.
+  \end{itemize}
+\end{block}
+\begin{block}{Beobachtungen}
+  \begin{enumerate}
+    \item Wir haben keine Ahnung, was der Text bedeutet.
+    \item Es gibt aber \alert{Regeln}, die offenbar eingehalten wurden.
+    \item Wir kennen mehr Regeln als bei den Hieroglyphen.
+  \end{enumerate}
+\end{block}
+\end{frame}
+
+\section*{Summary}
+
+\begin{frame}{Summary}
+\begin{itemize}
+  \item The \alert{first main message} of your talk in one or two lines.
+  \item The \alert{second main message} of your talk in one or two lines.
+  \item Perhaps a \alert{third message}, but not more than that.
+\end{itemize}
+\vskip0pt plus.5fill
+\begin{itemize}
+  \item Outlook
+  \begin{itemize}
+    \item Something you haven't solved.
+    \item Something else you haven't solved.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\appendix
+
+\section<presentation>*{\appendixname}
+\subsection<presentation>*{For Further Reading}
+
+\begin{frame}[allowframebreaks]
+\frametitle<presentation>{For Further Reading}
+\begin{thebibliography}{10}
+  \beamertemplatebookbibitems
+  \bibitem{Author1990}A.~Author.\newblock {\em Handbook of Everything}.\newblock Some Press, 1990.
+  \beamertemplatearticlebibitems
+  \bibitem{Someone2000}S.~Someone.\newblock On this and that.\newblock {\em Journal of This and That}, 2(1):50--100,2000.\newblock notes
+\end{thebibliography}
+\end{frame}
+
+\end{document}

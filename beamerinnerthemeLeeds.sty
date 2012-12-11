@@ -1,0 +1,38 @@
+% Copyright 2012 Toby Fleming
+% Much of this file is based on Till Tantau's beamer templates, hence they
+% may be distributed and/or modified under the GNU Public License v3.
+
+\mode<presentation>
+
+% No part numbering and left align
+\defbeamertemplate*{part page}{leeds theme}[1][]
+{
+  \begin{beamercolorbox}[sep=10pt,left,#1]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+
+% No section numbering and left align
+\defbeamertemplate*{section page}{leeds theme}[1][]
+{
+  \begin{beamercolorbox}[sep=10pt,left,#1]{part title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+
+% No subsection numbering and left align
+\defbeamertemplate*{subsection page}{leeds theme}[1][]
+{
+  \begin{beamercolorbox}[sep=10pt,left,#1]{part title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+
+% Current part, section and subsection on one page
+\def\headingpage{
+\usebeamertemplate*{part page}%
+\usebeamertemplate*{section page}%
+\usebeamertemplate*{subsection page}%
+}
+
+\mode<all>

@@ -1,0 +1,60 @@
+%!TEX TS-program = XeLaTeX
+% Copyright 2012 Toby Fleming
+% Much of this file is based on Till Tantau's beamer templates, hence they
+% may be distributed and/or modified under the GNU Public License v3.
+
+% WARNING: DO NOT USE AS A TEMPLATE!
+% This file has some terrible macros for demonstrating the colour themes.
+% You should never use this as a basis for a presentation. Go dig up an
+% example beamer presentation and add "\usetheme{Leeds}" to that.
+
+\documentclass[xetex,12pt,aspectratio=169]{beamer}
+\mode<presentation>
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=uk]{english}
+
+\usetheme{Leeds}
+
+\title[Short Title]{Looooong Title}
+\subtitle{Include Only If Paper Has a Subtitle}
+\author[Spam, Eggs]{H.~Spam\inst{1} \and F.~Eggs\inst{2}}
+\institute[Universities of Somewhere and Elsewhere]{\inst{1}Department of Practical Philosophy\\University of Somewhere\and\inst{2}Department of Theoretical Philosophy\\University of Elsewhere}
+\date[CFP 2003]{Conference on Fabulous Presentations, 2003}
+
+\newenvironment{colortheme}[1]{\makeatletter\input{beamercolortheme#1.sty}\makeatother}{}
+
+\newcommand{\testframes}[1]{
+\structframe{\titlepage}
+\part{#1}
+\structframe{\partpage}
+\section{Foo Section}
+\structframe{\sectionpage}
+\subsection{Bar subsection}
+\structframe{\subsectionpage}
+\structframe{\headingpage}
+\begin{frame}{Make Titles Informative}
+\begin{definition}[Lorem ipsum]
+Placeholder text (filler text) commonly used to demonstrate the \alert{graphics elements} of a document or visual presentation.
+\end{definition}
+\end{frame}
+}
+
+\begin{document}
+
+\testframes{Default}
+
+\begin{colortheme}{LeedsBlack}
+\testframes{Black}
+\end{colortheme}
+
+\begin{colortheme}{LeedsRed}
+\testframes{Red}
+\end{colortheme}
+
+\begin{colortheme}{LeedsGreen}
+\testframes{Green}
+\end{colortheme}
+
+\end{document}
